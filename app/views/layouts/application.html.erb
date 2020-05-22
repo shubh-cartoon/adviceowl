@@ -4,12 +4,44 @@
     <title>AdviceOwlRecommendationAsAService</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <%= yield %>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+      <div class="container">
+        <a class="navbar-brand" href="/">ADVICEOWL- RECOMMENDATION_AS A SERVICE</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <% if user_signed_in? %>
+                <a class="nav-link" href='<%= root_path %>'>API KEY Details</a>
+              <% end %>
+            </li>
+          </ul>
+          <p class="navbar-text float-right">
+            <% if user_signed_in? %>
+              Logged in as <strong class="navbar-brand"><%= current_user.email %></strong>.
+              <%= link_to 'Edit profile', edit_user_registration_path, :class => 'navbar-link btn btn-warning' %> |
+              <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link btn btn-danger'  %>
+            <% else %>
+              <%= link_to "Sign up", new_user_registration_path, :class => 'navbar-link btn btn-success'  %> |
+              <%= link_to "Login", new_user_session_path, :class => 'navbar-link btn btn-primary'  %>
+            <% end %>
+          </p>
+        </div>
+      </div>
+</nav>
+    <div class="container">
+      <p class="notice"><%= notice %></p>
+      <p class="alert"><%= alert %></p>
+      <%= yield %>
+    </div>
   </body>
 </html>
