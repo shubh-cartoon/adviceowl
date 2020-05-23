@@ -1,0 +1,40 @@
+<div class="container">
+    <div class="row">
+      <div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+        <div class="card card-signin my-5">
+          <div class="card-body">
+            <h5 class="card-title text-center">Sign Up</h5>
+              <%= form_for(resource, as: resource_name, class: 'form-signin', url: registration_path(resource_name)) do |f| %>
+                <%= render "devise/shared/error_messages", resource: resource %>
+                  <div class="form-label-group">
+                    <%= f.text_field :company_name, autofocus: true, class: 'form-control' %>
+                    <%= f.label :company_name %>
+                  </div>
+                  <div class="form-label-group">
+                    <%= f.email_field :email, autocomplete: "email", class: 'form-control' %>
+                    <%= f.label :email %>
+                  </div>
+                  <%= f.hidden_field :api_key, :value => SecureRandom.hex %>
+                  
+                  <div class="form-label-group">
+                    <%= f.password_field :password, autocomplete: "new-password", class: 'form-control' %>
+                    <%= f.label :password %>
+                  </div>
+                  
+                  <div class="form-label-group">
+                    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: 'form-control' %>
+                    <%= f.label :password_confirmation %>
+                  </div>
+    
+                  <%= f.submit "Sign up", class: 'btn btn-lg btn-success btn-block text-uppercase' %>
+                  
+                <% end %>
+                <hr class="my-4">
+                <%= render "devise/shared/links" %>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+            
