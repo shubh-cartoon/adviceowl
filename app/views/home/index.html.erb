@@ -8,7 +8,20 @@
       <a href="/create_table" class="btn btn-success">Create Database</a>
     <% else %>
       <h3>API KEY: <strong style="color: blue"><%= current_user.api_key %></strong></h3>
-    <% end %>  
+    <% end %>
+    
+    <% if current_user.email == 'flipkart@gmail.com'%>
+    <hr class="my-4">
+    <div class="col-md-3">
+      
+      <b>Availble User:</b><select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" class="form-control">
+      <% @users.each do |user| %>
+        <option value="http://localhost:3000/recommend/<%= current_user.api_key%>/<%= user['website_user_id'] %>"><%= user['website_user_id']%></option>
+      <% end %>
+    </select>
+    <pre id=""></pre>
+    </div>
+    <% end %>
   <% else %>
   <h1 class="display-6">Hello, <strong>User</strong></h1>
   <br />

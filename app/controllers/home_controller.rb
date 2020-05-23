@@ -9,7 +9,10 @@ class HomeController < ApplicationController
     request.env['warden'].request.env['devise.skip_trackable'] = '1'
   end
   def index
-    # results = ActiveRecord::Base.connection.execute("I INTO ")
+    if current_user.email == 'flipkart@gmail.com'
+      tbl = 'company_' + current_user.api_key + '_data'
+      @users = ActiveRecord::Base.connection.execute("select DISTINCT website_user_id from #{tbl}") 
+    end      
   end
   def create_table_for_user
     if current_user.id?
