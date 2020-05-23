@@ -10,10 +10,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_05_22_172608) do
+ActiveRecord::Schema.define(version: 2020_05_23_110737) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "company_86b4448638658dcb1210f67770ffa711_data", id: false, force: :cascade do |t|
+    t.string "website_user_id"
+    t.string "product_id"
+    t.index ["website_user_id"], name: "86b4448638658dcb1210f67770ffa711"
+  end
+
+  create_table "company_d1b38b8af70a28b0a3b5ac071addb4a2_data", id: false, force: :cascade do |t|
+    t.string "website_user_id"
+    t.string "product_id"
+    t.index ["website_user_id"], name: "d1b38b8af70a28b0a3b5ac071addb4a2"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -25,6 +37,7 @@ ActiveRecord::Schema.define(version: 2020_05_22_172608) do
     t.datetime "updated_at", null: false
     t.string "company_name"
     t.string "api_key"
+    t.boolean "table_created"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
