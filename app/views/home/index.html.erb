@@ -16,7 +16,7 @@
       
       <b>Availble User:</b><select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" class="form-control">
       <% @users.each do |user| %>
-        <option value="http://localhost:3000/recommend/<%= current_user.api_key%>/<%= user['website_user_id'] %>"><%= user['website_user_id']%></option>
+        <option value="/recommend/<%= current_user.api_key%>/<%= user['website_user_id'] %>"><%= user['website_user_id']%></option>
       <% end %>
     </select>
     <pre id=""></pre>
