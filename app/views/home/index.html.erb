@@ -1,32 +1,39 @@
 <div class="jumbotron">
   <% if user_signed_in? %>
-  <h1 class="display-6">Hello, <strong><%= current_user.email %></strong></h1>
-  <br />
-  <p class="lead">Here is your API KEY for integration</p>
-  <hr class="my-4">
+    <h1 class="display-6">Hello, <strong><%= current_user.email %></strong></h1>
+    <br />
+    <p class="lead">Here is your API KEY for integration</p>
+    <hr class="my-4">
     <% if !current_user.table_created%>
       <a href="/create_table" class="btn btn-success">Create Database</a>
     <% else %>
       <h3>API KEY: <strong style="color: blue"><%= current_user.api_key %></strong></h3>
     <% end %>
     
-    <% if current_user.email == 'flipkart@gmail.com'%>
     <hr class="my-4">
-    <div class="col-md-3">
-      
-      <b>Availble User:</b><select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" class="form-control">
-      <% @users.each do |user| %>
-        <option value="/recommend/<%= current_user.api_key%>/<%= user['website_user_id'] %>"><%= user['website_user_id']%></option>
-      <% end %>
-    </select>
-    <pre id=""></pre>
-    </div>
+    <h4>Import User-Product Purchase Data!</h4><br />
+    <fieldset>
+    <%= form_tag import_path, multipart: true do %>
+      <%= file_field_tag :file %>
+      <%= submit_tag "Import CSV" %>
+    <% end %>
+    </fieldset>
+    <% if current_user.email == 'flipkart@gmail.com'%>
+      <hr class="my-4">
+      <div class="col-md-3">
+        
+        <b>Availble User:</b><select onchange="this.options[this.selectedIndex].value && (window.location = this.options[this.selectedIndex].value);" class="form-control">
+        <% @users.each do |user| %>
+          <option value="/recommend/<%= current_user.api_key%>/<%= user['website_user_id'] %>"><%= user['website_user_id']%></option>
+        <% end %>
+      </select>
+      </div>
     <% end %>
   <% else %>
-  <h1 class="display-6">Hello, <strong>User</strong></h1>
-  <br />
-  <p class="lead">Please Login first to Access your accounnt</p>
-  <hr class="my-4">
-  
+    <h1 class="display-6">Hello, <strong>User</strong></h1>
+    <br />
+    <p class="lead">Please Login first to Access your accounnt</p>
+    <hr class="my-4">
+    
   <% end %>
 </div>

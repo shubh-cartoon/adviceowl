@@ -1,6 +1,7 @@
 require './lib/table_maker.rb'
 require './lib/recommendation.rb'
 class HomeController < ApplicationController
+  require 'csv'
   include Recommendation
   before_action :skip_trackable
   skip_before_action :authenticate_user!
@@ -42,6 +43,16 @@ class HomeController < ApplicationController
   
   def recommended_products
     render json: {data: recommend_products}
+  end
+  
+  def import
+    tbl = 'company_' + current_user.api_key + '_data'
+    file = params[:file]
+    CSV.foreach((file.path), headers: true) do |user_product|
+      ActiveRecord::Base.connection.execute("INSERT INTO #{tbl} values ('#{user_product[0]}', '#{user_product[1]}')")
+    end
+    flash[:notice] = "All user purchase data added to db."
+    redirect_to root_path
   end
     
 end
