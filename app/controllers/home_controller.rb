@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
   def index
     if user_signed_in?
-      if current_user.email == 'flipkart@gmail.com'
+      if current_user.email == 'flipkart@gmail.com' || current_user.email == 'kajal1111burad@gmail.com'
         tbl = 'company_' + current_user.api_key + '_data'
         @users = ActiveRecord::Base.connection.execute("select DISTINCT website_user_id from #{tbl}") 
       end
