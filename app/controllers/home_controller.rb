@@ -11,7 +11,7 @@ class HomeController < ApplicationController
   end
   def index
     if user_signed_in?
-      if current_user.email == 'flipkart@gmail.com' || current_user.email == 'kajal1111burad@gmail.com'
+      if current_user.email == 'flipkart@gmail.com' || current_user.email == 'shubhamgadiya@gmail.com'
         tbl = 'company_' + current_user.api_key + '_data'
         @users = ActiveRecord::Base.connection.execute("select DISTINCT website_user_id from #{tbl}") 
       end
@@ -35,14 +35,14 @@ class HomeController < ApplicationController
     tbl = 'company_' + params[:api_key] + '_data'
     results = ActiveRecord::Base.connection.execute("INSERT INTO #{tbl} values ('#{params[:website_user_id]}', '#{params[:product_id]}')")
     if results
-      render json: {}, status: 200
+      render json: {success: 'Data Inserted Successfully'}, status: 200
     else
       render json: {error: 'unable to create'}, status: :not_found
     end
   end
   
   def recommended_products
-    render json: {data: recommend_products}
+    render json: {data: recommend_products}, status: 200
   end
   
   def import

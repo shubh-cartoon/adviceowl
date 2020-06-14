@@ -23,6 +23,6 @@ module Recommendation
       end
     end
     sorted_recommended = recommended.sort_by { |key, value| value }.reverse
-    sorted_recommended[0...9]
+    sorted_recommended[0...10]
   end
 end
