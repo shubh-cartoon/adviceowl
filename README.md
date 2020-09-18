@@ -1,24 +1,7 @@
-# README
+# AdviceOwl - Recommendation As A Service Platform
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+* Generic Platform which provides machine learning based recommendations to any business
+* Wasy way to grow small to large scale busunesses to increase their sale
+* Real time recommendations provided with simple API Integration for any website
+* No language barrier
+* No more adding product and user details which increase privacy and security
